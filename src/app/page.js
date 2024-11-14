@@ -1,13 +1,34 @@
 import Link from "next/link";
 import Carousel from "../components/Carousel";
+import HomeCard from "@/components/HomeCard";
 
-export default function Home() {
+export default async function Home() {
+      
+      let products=[];
+      let errorMessage="";
+      try{
+        const res = await fetch('http://localhost:3000/api/getRandomProducts')
+        products= await res.json();
+      }
+      catch(error){
+        errorMessage=error.message;
+      }
+  
   
   return (
       <div>
         <div className="carousel relative">
         <Carousel />
-        <button className="absolute top-[45%] left-[35%] md:top-[47%] md:left-[43%] lg:top-[45%] lg:scale-110 lg:hover:scale-125 bg-orange-400 text-black rounded-lg scale-100 font-bold px-4 py-2 hover:bg-orange-600 hover:scale-110 transition border-black"><Link href={'/products'}>Shop Now</Link></button>
+        </div>
+        
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-8 my-4 lg:my-12">
+          {errorMessage ?
+          <div>{errorMessage}</div>
+          :
+          products.map((item,index)=>(
+            <HomeCard key={index} img={item.img} title={item.title} description={item.description} />
+          ))
+          }
         </div>
       </div>
   );
