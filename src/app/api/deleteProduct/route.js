@@ -17,15 +17,15 @@ connectDB();
 export async function POST(request){
 
     try {
-        const {slug}=await request.json()    
-        const product=await Product.findOne({_id:slug})
-        if(product){
-            return NextResponse.json(product)
+        const {data}=await request.json()
+        const result=await Product.deleteOne({_id:data})
+        if(result){
+            return NextResponse.json({message:"Product Deleted"})
         }else{
-            return NextResponse.json({message:"Product not found"})
+            return NextResponse.json({message:"Failed to delete product"})
         }
     } catch (error) {
-        return NextResponse.json({"error in get Product: ":error.message})
+        return NextResponse.json({"error in delete Product: ":error.message})
     }
 
 }

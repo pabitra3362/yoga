@@ -1,21 +1,36 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 
-const page = async () => {
-  let products = [];
-  let errorMessage = "";
+const page = () => {
+  const [products, setProducts] = useState([])
+  const [errorMessage, setErrorMessage] = useState(null)
+  const router=useRouter()
 
-  try {
-    const res = await fetch("http://localhost:3000/api/getAllProducts")
-    products = await res.json()
-  } catch (error) {
-    erroMessage = error.message
+  
+  const handleDelete = (product) => {
+    axios.post("http://localhost:3000/api/deleteProduct", {data:product._id})
+      .then(res => toast(res.data.message))
+      .catch(err => toast(err.message))
   }
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/getAllProducts")
+      .then(res => setProducts(res.data))
+      .catch(err => setErrorMessage(err.message))
+
+  }, [])
+
 
   return (
     <div>
+      <ToastContainer theme="dark" />
       <div className='flex justify-between items-center px-4'>
         <div className='left  text-white'>Product Control</div>
         <div className='right'>
@@ -67,10 +82,11 @@ const page = async () => {
 
                   <div className='btns flex justify-between items-center px-3'>
                     <div className="left">
-                      <button className="btn btn-outline btn-info w-28 font-bold">Edit</button>
+                      <button onClick={()=>router.push(`/admin/product/${product._id}`)} className="btn btn-outline btn-info w-28 font-bold">Edit</button>
                     </div>
+                    
                     <div className='right'>
-                      <button className="btn btn-outline btn-error w-28 font-bold">Delete</button>
+                      <button onClick={() => handleDelete(product)} className="btn btn-outline btn-error w-28 font-bold">Delete</button>
                     </div>
                   </div>
                 </div>

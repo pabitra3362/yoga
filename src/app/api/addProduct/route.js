@@ -17,15 +17,16 @@ connectDB();
 export async function POST(request){
 
     try {
-        const {slug}=await request.json()    
-        const product=await Product.findOne({_id:slug})
-        if(product){
-            return NextResponse.json(product)
+        const data=await request.json()
+        const result=await Product.create(data)
+        await result.save()
+        if(result){
+            return NextResponse.json({message:"Product Added",status:200})
         }else{
-            return NextResponse.json({message:"Product not found"})
+            return NextResponse.json({message:"Failed to add product",status:404})
         }
     } catch (error) {
-        return NextResponse.json({"error in get Product: ":error.message})
+        return NextResponse.json({"error in add Product: ":error.message})
     }
 
 }

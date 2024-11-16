@@ -11,7 +11,7 @@ export default async function Page({ params }) {
         const response = await fetch("http://localhost:3000/api/getSingleProduct",
             {
                 method: "POST",
-                body: JSON.stringify(slug),
+                body: JSON.stringify({slug}),
                 headers: {
                     "Content-Type": "application/json",
                 },
