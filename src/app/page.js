@@ -7,7 +7,7 @@ export default async function Home() {
   let products = [];
   let errorMessage = "";
   try {
-    const res = await fetch('http://localhost:3000/api/getRandomProducts')
+    const res = await fetch('http://localhost:3000/api/product/getRandomProducts')
     products = await res.json();
   }
   catch (error) {

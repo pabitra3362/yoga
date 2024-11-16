@@ -15,7 +15,7 @@ export default function App() {
 
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3000/api/addProduct", data)
+    axios.post("http://localhost:3000/api/product/addProduct", data)
       .then(res => toast(res.data.message))
       .catch(err => console.log(err.message))
   }

@@ -17,7 +17,7 @@ export default function page({ params }) {
     } = useForm()
 
     useEffect(() => {
-        axios.post("http://localhost:3000/api/getSingleProduct", {slug})
+        axios.post("http://localhost:3000/api/product/getSingleProduct", {slug})
             .then(res => {
                 setProduct(res.data)
                 console.log(res.data)
@@ -29,7 +29,7 @@ export default function page({ params }) {
 
     const onSubmit = (data) => {
         
-        axios.post("http://localhost:3000/api/updateProduct", {slug,...data})
+        axios.post("http://localhost:3000/api/product/updateProduct", {slug,...data})
             .then(res => toast(res.data.message))
             .catch(err => console.log(err.message))
     }
@@ -39,7 +39,7 @@ export default function page({ params }) {
         <div className="">
             <ToastContainer theme="dark" />
             <div className=" border border-cyan-300 text-white w-[90vw] lg:w-[60vw] mx-auto grid justify-center items-center gap-4 rounded-lg py-3 ">
-                <h1 className="text-center text-2xl">Add Product</h1>
+                <h1 className="text-center text-2xl">Update Product</h1>
                 <hr />
 
                 <form

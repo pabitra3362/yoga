@@ -5,7 +5,7 @@ const page = async() => {
     let products=[]
     let errorMessage=""
     try{
-        const res=await fetch("http://localhost:3000/api/getAllProducts")
+        const res=await fetch("http://localhost:3000/api/product/getAllProducts")
         products=await res.json();
     }
     catch(err){

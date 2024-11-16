@@ -1,7 +1,7 @@
 "use server"
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import Product from '../../model/product'
+import Product from '../../../model/product'
 
 async function connectDB() {
     await mongoose.connect("mongodb://localhost:27017/Products")

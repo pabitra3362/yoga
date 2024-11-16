@@ -8,7 +8,7 @@ export default async function Page({ params }) {
     const slug = (await params).slug
 
     try {
-        const response = await fetch("http://localhost:3000/api/getSingleProduct",
+        const response = await fetch("http://localhost:3000/api/product/getSingleProduct",
             {
                 method: "POST",
                 body: JSON.stringify({slug}),
