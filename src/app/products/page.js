@@ -16,9 +16,15 @@ const page = async() => {
 
 
   return (
+    <>
+      <p
+      className='text-white text-3xl md:text-4xl lg:text-6xl animate__animated animate__fadeInLeftBig text-center my-6'
+      >
+        Products
+      </p>
 
       <div
-      className=' grid md:grid-cols-2 lg:grid-cols-4 justify-center items-center py-4 gap-8 '>
+      className=' grid md:grid-cols-2 lg:grid-cols-4 justify-center items-center py-4 gap-8 animate__animated animate__fadeInRightBig '>
       {
           errorMessage ? <div>
             {errorMessage}
@@ -34,6 +40,7 @@ const page = async() => {
         ))
       }
       </div>
+    </>
   )
 }
 

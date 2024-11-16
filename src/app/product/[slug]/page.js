@@ -38,7 +38,6 @@ export default async function Page({ params }) {
                                 alt={product.title}
                                 width={250}
                                 height={250}
-                                quality={100}
                             />
                         </div>
                         <div className="title">
@@ -59,7 +58,7 @@ export default async function Page({ params }) {
                         </div>
                         <div className="flex justify-center items-center">
                         <Link href={'/products'}>
-                            <button className="btn btn-outline btn-accent w-full lg:w-[30vw] font-bold">Go Back</button>
+                            <button className="btn btn-outline btn-accent w-[90vw] lg:w-[30vw] font-bold">Go Back</button>
                         </Link>
                         </div>
 
