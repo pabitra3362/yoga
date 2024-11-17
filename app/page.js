@@ -12,6 +12,8 @@ export default async function Home() {
   }
   catch (error) {
     errorMessage = error.message;
+    console.log(error.message);
+    
   }
 
 
