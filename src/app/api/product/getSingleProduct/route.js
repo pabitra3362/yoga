@@ -4,7 +4,7 @@ import Product from "@/app/model/product";
 
 
 async function connectDB(){
-    await mongoose.connect("mongodb://localhost:27017/Products")
+    await mongoose.connect(process.env.MONGODB_URI)
     .then(()=>{
         console.log("Connected to MongoDB")
         return true
