@@ -8,7 +8,7 @@ import InstagramEmbed from '../../../components/InstagramEmbed';
 import { useRouter } from 'next/navigation';
 
 
-const page = () => {
+const Page = () => {
   const [posts, setPosts] = useState([])
   const [errorMessage, setErrorMessage] = useState(null)
   const router=useRouter()
@@ -92,4 +92,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -3,6 +3,7 @@ import "./globals.css";
 import 'animate.css';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,7 +25,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <script src="https://cdn.lordicon.com/lordicon.js"></script>
+      <Script 
+          src="https://cdn.lordicon.com/lordicon.js" 
+          strategy="afterInteractive" // Load after page is interactive
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

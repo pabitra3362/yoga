@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import React,{ useState, useEffect } from "react";
 
 
-export default function page({ params }) {
+export default function Page({ params }) {
     const slug = React.use(params).slug
     const [Product, setProduct] = useState([])
     const {

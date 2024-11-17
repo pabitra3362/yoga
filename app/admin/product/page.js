@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 
-const page = () => {
+const Page = () => {
   const [products, setProducts] = useState([])
   const [errorMessage, setErrorMessage] = useState(null)
   const router=useRouter()
@@ -98,4 +98,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
