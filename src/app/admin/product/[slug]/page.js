@@ -20,8 +20,6 @@ export default function page({ params }) {
         axios.post("http://localhost:3000/api/product/getSingleProduct", {slug})
             .then(res => {
                 setProduct(res.data)
-                console.log(res.data)
-                
             })
             .catch(err => toast(err.message))
     }, [])

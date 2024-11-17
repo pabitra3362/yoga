@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import Product from "@/app/model/product";
+import Post from "@/app/model/post";
 
 
 async function connectDB() {
@@ -18,29 +18,22 @@ export async function POST(request) {
 
     try {
         const data =await request.json()
-        
-        
-        const result = await Product.updateOne(
+        const result = await Post.updateOne(
             { _id: data.slug },
             {
                 $set:
                 {
                     img: data.img,
-                    title: data.title,
-                    price: data.price,
-                    description: data.description,
-                    uses: data.uses,
-                    stock: data.stock
                 }
             })
         
         if (result) {
-            return NextResponse.json({ message: "Product Updated" })
+            return NextResponse.json({ message: "Post Updated" })
         } else {
-            return NextResponse.json({ message: "Failed to update product" })
+            return NextResponse.json({ message: "Failed to update post" })
         }
     } catch (error) {
-        return NextResponse.json({ "error in update Product: ": error.message })
+        return NextResponse.json({ "error in update Post: ": error.message })
     }
 
 }

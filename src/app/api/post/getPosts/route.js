@@ -1,7 +1,7 @@
 "use server"
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import Product from '../../../model/product'
+import Post from "@/app/model/post";
 
 async function connectDB() {
     await mongoose.connect("mongodb://localhost:27017/Products")
@@ -17,10 +17,14 @@ connectDB();
 export async function GET(request) {
     if(connectDB){
         try {
-            const products = await Product.find({})
-            return NextResponse.json(products)        
+            const posts = await Post.find({})
+            if(posts){
+                return NextResponse.json({message:posts})        
+            }else{
+                return NextResponse.json({message:"Didn't find any post"})
+            }
         } catch (error) {
-            return NextResponse.json({"error while getting products: ":error.message})
+            return NextResponse.json({"error while getting posts: ":error.message})
         }
     }
 }

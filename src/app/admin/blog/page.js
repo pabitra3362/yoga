@@ -1,91 +1,74 @@
-'use client'
-import axios from "axios"
-import { useForm } from "react-hook-form"
+import BlogCard from '@/components/BlogCard';
+import React from 'react'
+import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 
-export default function App() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm()
+const page = async() => {
+  let blogs = [];
+  let errorMessage = null;
 
-
-  const onSubmit = (data) => {
-    axios.post("http://localhost:3000/api/blog/addBlog", data)
-      .then(res => toast(res.data.message))
-      .catch(err => console.log(err.message))
+  try { 
+    const response = await axios.get('http://localhost:3000/api/blog/getBlogs');
+    blogs = response.data.message;  
+  } catch (error) {
+    errorMessage = error.message;  
   }
 
 
   return (
-    <div className="">
+    <div>
       <ToastContainer theme="dark" />
-      <div className=" border border-cyan-300 text-white w-[90vw] lg:w-[60vw] mx-auto grid justify-center items-center gap-4 rounded-lg py-3 ">
-        <h1 className="text-center text-2xl">Add Blog</h1>
-        <hr />
-
-        <form
-          className="grid justify-center items-center gap-3"
-          onSubmit={handleSubmit(onSubmit)}>
-
-          <div className="img">
-            <input
-              className="w-[80vw] lg:w-[58vw] h-12 px-3 rounded-lg"
-              type="text"
-              placeholder="Image url..."
-              {...register("img", {
-                required: {
-                  value: true,
-                  message: "Link is required"
-                },
-                pattern: {
-                  value: /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-                  message: "Please enter a valid image link ex: https.www.domain.com"
-                }
-              })} />
-            {errors.img && <div className="text-red-600">{errors.img.message}</div>}
-          </div>
-
-          <div className="title">
-            <input
-              className="w-[80vw] lg:w-[58vw] h-12 px-3 rounded-lg"
-              type="text"
-              placeholder="Title"
-              {...register("title", {
-                required: {
-                  value: true,
-                  message: "title is required"
-                }
-              })} />
-            {errors.title && <div className="text-red-600">{errors.title.message}</div>}
-          </div>
-
-
-          <div className="content">
-            <textarea
-              className="w-[80vw] lg:w-[58vw] h-72 p-3 rounded-lg"
-              placeholder="Content"
-              {...register("content", {
-                required: {
-                  value: true,
-                  message: "content is required"
-                }
-              })} />
-            {errors.content && <div className="text-red-600">{errors.content.message}</div>}
-          </div>
-
-
-          <div className="btns flex justify-center items-center py-2">
-            <input
-              className="btn btn-outline btn-accent font-bold"
-              type="submit" value={"Publish"} />
-          </div>
-        </form>
+      <div className='flex justify-between items-center px-4'>
+        <div className='left  text-white'>Blog Control</div>
+        <div className='right'>
+          <Link href={'/admin/blog/form'}><button className="btn rounded-lg text-white">
+            <lord-icon
+              src="https://cdn.lordicon.com/sbnjyzil.json"
+              trigger="hover"
+              stroke="bold"
+              colors="primary:#ffffff,secondary:#ffffff"
+              style={{ "width": "40px", "height": "40px" }}>
+            </lord-icon>
+            Add New Blog
+          </button></Link>
+        </div>
       </div>
+
+      <p
+        className='text-white text-3xl md:text-4xl lg:text-6xl animate__animated animate__fadeInLeftBig text-center my-6'
+      >
+        Blogs
+      </p>
+
+      <div className='grid justify-center items-center'>
+      
+      {errorMessage && <div>{errorMessage}</div>}
+
+      <div
+      className='grid md:grid-cols-2 lg:grid-cols-4 justify-center animate__animated animate__fadeInRightBig items-center gap-4 md:gap-10'
+      >
+      {blogs.length > 0 ? (
+        blogs.map((blog, index) => (
+          <BlogCard
+          key={index}
+          className='w-80 border border-cyan-400 rounded-lg grid justify-center items-center bg-transparent backdrop-blur-md gap-3 py-3'
+          title={blog.title}
+          src={blog.img}
+          id={blog._id}
+          button={true}
+          />
+            
+        ))
+      ) : (
+        <p>No blogs available</p> 
+      )}
+      </div>
+    </div>
     </div>
   )
 }
+
+export default page
