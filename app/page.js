@@ -39,7 +39,7 @@ export default async function Home() {
       <p
         className="text-white text-3xl md:text-4xl lg:text-6xl animate__animated animate__flipInX text-center my-6"
       >
-        People's Love To Our Products
+        People Love To Our Products
       </p>
 
       {/* Stats */}
