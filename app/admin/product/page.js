@@ -15,13 +15,13 @@ const Page = () => {
 
   
   const handleDelete = (product) => {
-    axios.post("http://localhost:3000/api/product/deleteProduct", {data:product._id})
+    axios.post("https://yoga2-sage.vercel.app/api/product/deleteProduct", {data:product._id})
       .then(res => toast(res.data.message))
       .catch(err => toast(err.message))
   }
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/product/getAllProducts")
+    axios.get("https://yoga2-sage.vercel.app/api/product/getAllProducts")
       .then(res => setProducts(res.data))
       .catch(err => setErrorMessage(err.message))
 

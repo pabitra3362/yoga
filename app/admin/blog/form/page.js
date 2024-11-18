@@ -15,7 +15,7 @@ export default function App() {
 
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3000/api/blog/addBlog", data)
+    axios.post("https://yoga2-sage.vercel.app/api/blog/addBlog", data)
       .then(res => toast(res.data.message))
       .catch(err => console.log(err.message))
   }

@@ -16,7 +16,7 @@ const Page = () => {
 
   const handleDelete=(post) => {
     try {
-      axios.post('http://localhost:3000/api/post/deletePost',{id:post._id})
+      axios.post('https://yoga2-sage.vercel.app/api/post/deletePost',{id:post._id})
       .then(res=>toast(res.data.message))
       .catch(err=>toast(err.message))
     } catch (error) {
@@ -26,7 +26,7 @@ const Page = () => {
 
   useEffect(()=>{
     try { 
-      axios.get('http://localhost:3000/api/post/getPosts')
+      axios.get('https://yoga2-sage.vercel.app/api/post/getPosts')
       .then(res=>setPosts(res.data.message))
       .catch(err=>setErrorMessage(err.message))
     } catch (error) {

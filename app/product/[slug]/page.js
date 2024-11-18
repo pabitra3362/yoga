@@ -8,7 +8,7 @@ export default async function Page({ params }) {
     const slug = (await params).slug
 
     try {
-        const response = await fetch("http://localhost:3000/api/product/getSingleProduct",
+        const response = await fetch("https://yoga2-sage.vercel.app/api/product/getSingleProduct",
             {
                 method: "POST",
                 body: JSON.stringify({slug}),

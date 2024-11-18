@@ -20,7 +20,7 @@ export default function Page({ params }) {
 
   useEffect(() => {
     if (slug) {
-      axios.post("http://localhost:3000/api/post/getSinglePost", { slug })
+      axios.post("https://yoga2-sage.vercel.app/api/post/getSinglePost", { slug })
         .then(res => {
           setPost(res.data.message);
         })
@@ -29,7 +29,7 @@ export default function Page({ params }) {
   }, [slug]); // Trigger the effect when `slug` changes
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3000/api/post/updatePost", { slug, ...data })
+    axios.post("https://yoga2-sage.vercel.app/api/post/updatePost", { slug, ...data })
       .then(res => toast.success(res.data.message))
       .catch(err => toast.error(err.message));
   };

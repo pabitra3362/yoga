@@ -9,7 +9,7 @@ export default async function Page({ params }) {
     const slug = (await params).slug
 
     try {
-       const res=await axios.post("http://localhost:3000/api/blog/getSingleBlog",{slug})
+       const res=await axios.post("https://yoga2-sage.vercel.app/api/blog/getSingleBlog",{slug})
         blog=await res.data.message
     } catch (error) {
         errorMessage = error.message

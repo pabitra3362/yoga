@@ -7,7 +7,7 @@ export default async function Home() {
   let products = [];
   let errorMessage = "";
   try {
-    const res = await fetch('http://localhost:3000/api/product/getRandomProducts')
+    const res = await fetch('https://yoga2-sage.vercel.app/api/product/getRandomProducts')
     products = await res.json();
   }
   catch (error) {

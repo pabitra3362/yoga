@@ -11,7 +11,7 @@ const page = async() => {
   let errorMessage = null;
 
   try { 
-    const response = await axios.get('http://localhost:3000/api/blog/getBlogs');
+    const response = await axios.get('https://yoga2-sage.vercel.app/api/blog/getBlogs');
     blogs = response.data.message;  
   } catch (error) {
     errorMessage = error.message;  
